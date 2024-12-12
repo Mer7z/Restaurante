@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 from tkinter import messagebox
 from Interfaz.Menu import Menu
 from Interfaz.MenuChef.MenuChef import MenuChef
@@ -17,13 +18,16 @@ __email__ = "john.bolivar@correounivalle.edu.co, manuel.umana@correounivalle.edu
 __status__ = "Beta"
 
 class Loggin:
-    def __init__(self, loggin, listaComandas, listaInformes, listaPlatos):
+    def __init__(self, loggin, listaComandas, listaInformes, listaPlatos, listaMeseros, listaRegistradores, listaChefs):
         self.loggin = loggin
         self.listaComandas = listaComandas
         self.listaInformes = listaInformes
         self.listaPlatos = listaPlatos
+        self.listaMeseros = listaMeseros
+        self.listaRegistradores = listaRegistradores
+        self.listaChefs = listaChefs
         self.loggin.title("Login")
-        self.loggin.geometry("300x200")
+        self.loggin.geometry("300x250")
         self.loggin.resizable(0,0)
 
         self.label_user = tk.Label(loggin, text="Usuario:")
@@ -36,12 +40,24 @@ class Loggin:
         self.entry_pass = tk.Entry(loggin, show="*")
         self.entry_pass.pack(pady=5)
 
+        self.lbRol = tk.Label(loggin, text="Rol:*")
+        self.lbRol.pack(pady=5)
+
+        opciones = ["registrador", "mesero", "chef"]
+        self.cbRol = ttk.Combobox(loggin, values=opciones)
+        self.cbRol.set("registrador")
+        self.cbRol.pack(pady=5)
+        
+        self.lbError = tk.Label(loggin, text="", fg="red")
+        self.lbError.pack(pady=3)
+
         self.button_login = tk.Button(loggin, text="Login", command=self.check_login)
         self.button_login.pack(pady=10)
 
     def check_login(self):
         user = self.entry_user.get()
         password = self.entry_pass.get()
+        rol = self.cbRol.get()
 
         if user == "Juanes" and password == "123456":
             self.open_registrador_menu()
@@ -50,7 +66,31 @@ class Loggin:
         elif user == "Manuel" and password == "456789":
             self.open_mesero_menu()
         else:
-            messagebox.showerror("Error", "Usuario o contraseña incorrectos")
+            lista = []
+            if rol == "registrador":
+                lista = self.listaRegistradores
+            elif rol == "mesero":
+                lista = self.listaMeseros
+            elif rol == "chef":
+                lista = self.listaChefs
+            
+            for u in lista:
+                if u.nombre == user:
+                    if u.cedula == password:
+                        if rol == "registrador":
+                            self.open_registrador_menu()
+                        elif rol == "mesero":
+                            self.open_mesero_menu()
+                        elif rol == "chef":
+                            self.open_chef_menu()
+                        return
+                    else:
+                        self.lbError.config(text="El nombre de usuario o contraseña no son correctos.")
+                        break
+            self.lbError.config(text="El usuario no exite.")
+                            
+
+
 
     def open_registrador_menu(self):
         messagebox.showinfo("Registrador", "Bienvenido, Registrador")

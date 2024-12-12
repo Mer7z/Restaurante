@@ -4,6 +4,9 @@ from Serializador import Serializador
 from Mesa import Mesa
 from Mesero import Mesero
 from Chef import Chef
+from Controlador.MesaControlador import MesaControlador
+from Controlador.MeseroControlador import MeseroControlador
+from Controlador.ChefControlador import ChefControlador
 
 __author__ = "John Esneider Marin Bolivar, Manuel Esteban ramirez, Juan Esteban Agudelo Carmona"
 __copyright__ = "Copyright 2024, JMJ"
@@ -128,13 +131,13 @@ class Registrador(Persona):
 
     def serializar_mesas(self):
         """Serializa las mesas en un archivo de texto."""
-        texto = ""
+        mesasCon = MesaControlador()
         for mesa in self.mesas:
-            id = mesa.id_mesa
-            comensales = mesa.cantidad_comensales
-            estado = mesa.estado
-            texto += f"{id}\n{comensales}\n{estado}\n"
-        self.__serializadorMesa.escribirTodo(texto)
+            if mesasCon.obtener_mesa(mesa.id_mesa):
+                mesasCon.actualizar_mesa(mesa)
+            else:
+                mesasCon.guardar_mesa(mesa)
+        mesasCon.cerrar_con()
 
     def gestionar_meseros(self, mesero, accion):
         """Gestiona los meseros del restaurante (crear, eliminar).
@@ -151,15 +154,14 @@ class Registrador(Persona):
 
     def serializar_meseros(self):
         """Serializa los meseros en un archivo de texto."""
-        texto = ""
-        for mesero in self.meseros:
-            cedula = mesero.cedula
-            nombre = mesero.nombre
-            apellido = mesero.apellido
-            telefono = mesero.telefono
-            email = mesero.email
-            texto += f"{cedula}\n{nombre}\n{apellido}\n{telefono}\n{email}\n"
-        self.__serializadorMesero.escribirTodo(texto)
+        meserosCon = MeseroControlador()
+        for meseros in self.meseros:
+            if meserosCon.obtener_mesero(meseros.cedula):
+                meserosCon.actualizar_mesero(meseros)
+            else:
+                meserosCon.guardar_mesero(meseros)
+        meserosCon.cerrar_con()
+            
 
     def gestionar_chef(self, chef, accion):
         """Gestiona los chefs del restaurante (crear, eliminar).
@@ -176,15 +178,12 @@ class Registrador(Persona):
         
     def serializar_chefs(self):
         """Serializa los chefs en un archivo de texto."""
-        texto = ""
+        chefCon = ChefControlador()
         for chef in self.chefs:
-            cedula = chef.cedula
-            nombre = chef.nombre
-            apellido = chef.apellido
-            telefono = chef.telefono
-            email = chef.email
-            texto += f"{cedula}\n{nombre}\n{apellido}\n{telefono}\n{email}\n"
-        self.__serializadorChef.escribirTodo(texto)
+            if chefCon.obtener_chef(chef.cedula):
+                chefCon.actualizar_chef(chef)
+            else:
+                chefCon.guardar_chef(chef)
 
     def generar_informes_diarios(self, informes, fecha, comandas):
         """Genera un informe diario sobre las comandas del restaurante.

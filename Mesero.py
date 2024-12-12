@@ -3,6 +3,8 @@ from Cliente import Cliente
 from SerializadorComanda import SerializadorComanda
 from Serializador import Serializador
 from Mesa import Mesa
+from Controlador.ComandaControlador import ComandaControlador
+from Controlador.MesaControlador import MesaControlador
 
 __author__ = "John Esneider Marin Bolivar, Manuel Esteban ramirez, Juan Esteban Agudelo Carmona"
 __copyright__ = "Copyright 2024, JMJ"
@@ -120,13 +122,13 @@ class Mesero:
         Excepciones:
             None
         """
-        texto = ""
+        mesaCon = MesaControlador()
         for mesa in self.mesas:
-            id = mesa.id_mesa
-            comensales = mesa.cantidad_comensales
-            estado = mesa.estado
-            texto+=f"{id}\n{comensales}\n{estado}\n"
-        self.__serializadorMesa.escribirTodo(texto)
+            if mesaCon.obtener_mesa(mesa.id_mesa):
+                mesaCon.actualizar_mesa(mesa)
+            else:
+                mesaCon.guardar_mesa(mesa)
+        mesaCon.cerrar_con()
 
     def agregar_mesa(self, mesa):
         """Método que permite agregar una mesa a la lista de mesas asignadas.
@@ -328,15 +330,8 @@ class Mesero:
         comanda = self.buscar_comanda(id_comanda)
         if not comanda:
             return
-        texto = f"{comanda.id}\n{comanda.mesa}\n{comanda.cliente}\n{comanda.precio_total}\n{comanda.estado}\n"
-        i=0
-        for plato in comanda.platos:
-            texto+=f"{plato[0].id_plato},{plato[1]}"
-            if i < len(comanda.platos) - 1:
-                texto+="|"
-            i+=1
-
-        self.__serializadorComanda.escribirArchivo(texto)
+        comandaCon = ComandaControlador()
+        comandaCon.guardar_comanda(comanda)
     
     def buscar_mesa(self, id_mesa):
         """Método que busca una mesa por su identificador.

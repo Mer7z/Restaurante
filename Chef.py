@@ -1,6 +1,7 @@
 from Persona import Persona
 from Plato import Plato
 from Serializador import Serializador
+from Controlador.PlatoControlador import PlatoControlador
 
 __author__ = "John Esneider Marin Bolivar, Manuel Esteban ramirez, Juan Esteban Agudelo Carmona"
 __copyright__ = "Copyright 2024, JMJ"
@@ -34,7 +35,7 @@ class Chef(Persona):
             None
         """
         super().__init__(cedula, nombre, apellido, telefono, email)
-        self.__serializadorPlatos = Serializador("platos.txt", Plato, ["int", "str", "float", "str"])
+        # self.__serializadorPlatos = Serializador("platos.txt", Plato, ["int", "str", "float", "str"])
 
     def cambiar_estado_comanda(self, comanda, estado):
         """Método que permite cambiar el estado de una comanda.
@@ -82,12 +83,10 @@ class Chef(Persona):
         Excepciones:
             None
         """
-        texto = ""
+        platoCon = PlatoControlador()
         for plato in listaPlatos:
-            id = plato.id_plato
-            nombre = plato.nombre
-            precio = plato.precio
-            descripcion = plato.descripcion
-            cantidad = plato.cantidad
-            texto += f"{id}\n{nombre}\n{precio}\n{descripcion}\n{cantidad}\n"
-        self.__serializadorPlatos.escribirTodo(texto)
+            if platoCon.obtener_plato(plato.id_plato):
+                platoCon.actualizar_plato(plato)
+            else:
+                platoCon.guardar_plato(plato)
+        platoCon.cerrar_con()

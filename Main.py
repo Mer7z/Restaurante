@@ -12,6 +12,12 @@ from SerializadorComanda import SerializadorComanda
 from Plato import Plato
 from Interfaz.MenuChef.MenuChef import MenuChef
 from Interfaz.Loggin import Loggin
+from Controlador.PlatoControlador import PlatoControlador
+from Controlador.MesaControlador import MesaControlador
+from Controlador.ComandaControlador import ComandaControlador
+from Controlador.ChefControlador import ChefControlador
+from Controlador.RegistradorControlador import RegistradorControlador
+from Controlador.MeseroControlador import MeseroControlador
 
 __author__ = "John Esneider Marin Bolivar, Manuel Esteban ramirez, Juan Esteban Agudelo Carmona"
 __copyright__ = "Copyright 2024, JMJ"
@@ -25,14 +31,18 @@ __status__ = "Beta"
 app = tk.Tk()
 
 app.geometry("500x400")
-serializadorChef = Serializador("chefs.txt", Chef, ["str", "str", "str", "str", "str"])
-serializadorMesa = Serializador("mesas.txt", Mesa, ["int", "int", "str"])
-serializadorComanda = SerializadorComanda()
-serializadorPlato = Serializador("platos.txt", Plato, ["int", "str", "float", "str", "int"])
-listaPlatos = serializadorPlato.leerArchivo()
-listaComandas = serializadorComanda.leerArchivo(listaPlatos)
-listaChefs = serializadorChef.leerArchivo()
-listaMesas = serializadorMesa.leerArchivo()
+platoCon = PlatoControlador()
+comandaCon = ComandaControlador()
+chefCon = ChefControlador()
+mesaCon = MesaControlador()
+registradorCon = RegistradorControlador()
+meseroCon = MeseroControlador()
+listaPlatos = platoCon.obtener_platos()
+listaComandas = comandaCon.obtener_comandas()
+listaChefs = chefCon.obtener_chefs()
+listaMesas = mesaCon.obtener_mesas()
+listaMeseros = meseroCon.obtener_meseros()
+listaRegistradores = registradorCon.obtener_registradores()
 listaInformes = []
 reg = Registrador("", "", "", "", "", listaMesas, [], listaChefs)
 chef  = Chef("", "", "", "", "")
@@ -41,6 +51,6 @@ chef  = Chef("", "", "", "", "")
 # GestionarMesero(app, reg, "crear")
 # GestionarMesa(app, reg, "eliminar")
 # MenuChef(chef, listaComandas)
-Loggin(app, listaComandas, listaInformes, listaPlatos)
+Loggin(app, listaComandas, listaInformes, listaPlatos, listaMeseros, listaRegistradores, listaChefs)
 
 app.mainloop()

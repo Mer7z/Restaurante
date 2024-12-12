@@ -1,3 +1,5 @@
+from Plato import Plato
+
 __author__ = "John Esneider Marin Bolivar, Manuel Esteban ramirez, Juan Esteban Agudelo Carmona"
 __copyright__ = "Copyright 2024, JMJ"
 __credits__ = ["JMJ", "John Esneider Marin Bolivar, Manuel Esteban ramirez, Juan Esteban Agudelo Carmona", "Univalle"]
@@ -36,7 +38,7 @@ class Comanda:
         """
         self.id = id_comanda
         self.mesa = mesa
-        self.platos = platos
+        self.platos: list[Plato] = platos
         self.cliente = cliente
         self.precio_total = precio_total
         self.estado = estado
