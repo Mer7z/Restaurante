@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter import messagebox
 from Interfaz.Menu import Menu
 from Interfaz.MenuChef.MenuChef import MenuChef
 from Interfaz.MenuMesero.MenuMesero import MenuMesero
@@ -97,20 +96,37 @@ class Loggin:
                             
 
 
+    
+    def animate_message(self, message):
+        self.message_window = tk.Toplevel(self.loggin)
+        self.message_window.title("Hola!!!")
+        self.message_window.geometry("250x100")
+        self.message_window.resizable(0, 0)
+
+        self.label_animation = tk.Label(self.message_window, text="", font=("Arial", 10))
+        self.label_animation.pack(expand=True)
+        self.show_animation(message, 0)
+
+    def show_animation(self, message, index):
+        if index < len(message):
+            self.label_animation.config(text=message[:index + 1])  
+            self.loggin.after(100, self.show_animation, message, index + 1)
+        else:
+            pass#self.loggin.after(4000, self.message_window.destroy)
 
     def open_registrador_menu(self):
-        messagebox.showinfo("Registrador", "Bienvenido, Registrador")
+        self.animate_message("Bienvenido, Registrador")
         miRegistrador = Registrador("11151", "juan", "agudelo", "31146446","juan@gmail.com")
 
 
         app = Menu(miRegistrador, self.listaInformes, self.listaComandas)
 
     def open_chef_menu(self):
-        messagebox.showinfo("Chef", "Bienvenido, Chef")
+        self.animate_message("Bienvenido, Chef")
         michef = Chef("12345", "Esneider", "Marin", "1234345", "esneider@gmail.com")
         MenuChef(michef, self.listaComandas, self.listaPlatos)
 
     def open_mesero_menu(self):
-        messagebox.showinfo("Mesero", "Bienvenido, Mesero")
+        self.animate_message("Bienvenido, Mesero")
         mimesero = Mesero("2355667", "Manuel", "Ramirez", "435677", "manuel@gmail.com")
         MenuMesero(mimesero, self.listaComandas)
