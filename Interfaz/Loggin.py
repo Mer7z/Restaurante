@@ -99,7 +99,7 @@ class Loggin:
     
     def animate_message(self, message):
         self.message_window = tk.Toplevel(self.loggin)
-        self.message_window.title("Hola!!!")
+        self.message_window.title("Hola!")
         self.message_window.geometry("250x100")
         self.message_window.resizable(0, 0)
 
@@ -112,7 +112,7 @@ class Loggin:
             self.label_animation.config(text=message[:index + 1])  
             self.loggin.after(100, self.show_animation, message, index + 1)
         else:
-            pass#self.loggin.after(4000, self.message_window.destroy)
+            self.loggin.after(4000, self.message_window.destroy)
 
     def open_registrador_menu(self):
         self.animate_message("Bienvenido, Registrador")
