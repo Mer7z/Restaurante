@@ -26,21 +26,26 @@ class Loggin:
         self.listaMeseros = listaMeseros
         self.listaRegistradores = listaRegistradores
         self.listaChefs = listaChefs
-        self.loggin.title("Login")
+        self.loggin.title("Login!!!")
         self.loggin.geometry("300x250")
         self.loggin.resizable(0,0)
+        self.iconBullet = tk.PhotoImage(file=r"icons\bullet_yellow.png")
+        self.loggin.iconphoto(True, self.iconBullet)
 
-        self.label_user = tk.Label(loggin, text="Usuario:")
+        self.iconUser = tk.PhotoImage(file=r"icons\user.png")
+        self.label_user = tk.Label(loggin, text="Usuario:", image=self.iconUser,compound= "right")
         self.label_user.pack(pady=5)
         self.entry_user = tk.Entry(loggin)
         self.entry_user.pack(pady=5)
 
-        self.label_pass = tk.Label(loggin, text="Contraseña:")
+        self.iconBuilded = tk.PhotoImage(file= r"icons\building_edit.png")
+        self.label_pass = tk.Label(loggin, text="Contraseña:", image=self.iconBuilded, compound= "right")
         self.label_pass.pack(pady=5)
         self.entry_pass = tk.Entry(loggin, show="*")
         self.entry_pass.pack(pady=5)
 
-        self.lbRol = tk.Label(loggin, text="Rol:*")
+        self.iconGroup = tk.PhotoImage(file=r"icons\group_go.png")
+        self.lbRol = tk.Label(loggin, text="Rol:", image=self.iconGroup, compound= "right")
         self.lbRol.pack(pady=5)
 
         opciones = ["registrador", "mesero", "chef"]
@@ -51,7 +56,8 @@ class Loggin:
         self.lbError = tk.Label(loggin, text="", fg="red")
         self.lbError.pack(pady=3)
 
-        self.button_login = tk.Button(loggin, text="Login", command=self.check_login)
+        self.iconGo = tk.PhotoImage(file=r"icons\application_go.png")
+        self.button_login = tk.Button(loggin, text="Login", image= self.iconGo, compound="left", command=self.check_login)
         self.button_login.pack(pady=10)
 
     def check_login(self):
