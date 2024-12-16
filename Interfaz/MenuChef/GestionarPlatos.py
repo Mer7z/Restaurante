@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from Plato import Plato
+from Interfaz.Tooltips import add_tooltip 
 
 class GestionarPlato:
     """
@@ -77,10 +78,12 @@ class GestionarPlato:
         self.iconoGuardar = tk.PhotoImage(file=r"icons\add.png")
         guardar_button = ttk.Button(frame, text="Guardar", image=self.iconoGuardar, compound="right", command=self.guardar)
         guardar_button.grid(row=5, column=0, pady=10)
+        add_tooltip(guardar_button,"Haz clic aquí para guardar.")
         
         self.iconoSalir = tk.PhotoImage(file=r"icons\cancel.png")
         salir_button = ttk.Button(frame, text="Salir", command=self.subventana.destroy)
         salir_button.grid(row=5, column=1, pady=10)
+        add_tooltip(salir_button,"Haz clic aquí para salir.")
 
         if accion == "eliminar":
             # Botón adicional para buscar en caso de eliminar
