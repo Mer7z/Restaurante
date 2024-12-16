@@ -72,10 +72,13 @@ class GestionarPlato:
         descripcion_entry.grid(row=4, column=1, pady=5)
         descripcion_entry.bind("<KeyRelease>", lambda e: self.descripcion.set(descripcion_entry.get("1.0", tk.END).strip()))
 
-        # Botones para guardar y salir
-        guardar_button = ttk.Button(frame, text="Guardar", command=self.guardar)
-        guardar_button.grid(row=5, column=0, pady=10)
 
+        # Botones para guardar y salir
+        self.iconoGuardar = tk.PhotoImage(file=r"icons\add.png")
+        guardar_button = ttk.Button(frame, text="Guardar", image=self.iconoGuardar, compound="right", command=self.guardar)
+        guardar_button.grid(row=5, column=0, pady=10)
+        
+        self.iconoSalir = tk.PhotoImage(file=r"icons\cancel.png")
         salir_button = ttk.Button(frame, text="Salir", command=self.subventana.destroy)
         salir_button.grid(row=5, column=1, pady=10)
 

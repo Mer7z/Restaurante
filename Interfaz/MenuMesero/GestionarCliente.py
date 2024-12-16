@@ -54,12 +54,13 @@ class GestionarCliente():
         email_entry = ttk.Entry(frame, width=25, state="normal" if accion == "crear" else "disabled", textvariable=self.email)
         email_entry.grid(row=4, column=1, pady=5)
 
-        
 
-        guardar_button = ttk.Button(frame, text="Guardar", command=self.guardar)
+        self.iconoGuardar = tk.PhotoImage(file=r"icons\add.png")
+        guardar_button = ttk.Button(frame, text="Guardar", image=self.iconoGuardar, compound="right", command=self.guardar)
         guardar_button.grid(row=5, column=0, pady=10)
 
-        salir_button = ttk.Button(frame, text="Salir", command=self.subventana.destroy)
+        self.iconoSalir = tk.PhotoImage(file=r"icons\cancel.png")
+        salir_button = ttk.Button(frame, text="Salir",image=self.iconoSalir, compound="right", command=self.subventana.destroy)
         salir_button.grid(row=5, column=1, pady=10)
 
         if accion == "eliminar":

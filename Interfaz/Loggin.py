@@ -25,7 +25,7 @@ class Loggin:
         self.listaMeseros = listaMeseros
         self.listaRegistradores = listaRegistradores
         self.listaChefs = listaChefs
-        self.loggin.title("Login!!!")
+        self.loggin.title("Login!")
         self.loggin.geometry("300x250")
         self.loggin.resizable(0,0)
         self.iconBullet = tk.PhotoImage(file=r"icons\bullet_yellow.png")
@@ -112,7 +112,7 @@ class Loggin:
             self.label_animation.config(text=message[:index + 1])  
             self.loggin.after(100, self.show_animation, message, index + 1)
         else:
-            self.loggin.after(4000, self.message_window.destroy)
+            self.loggin.after(3000, self.message_window.destroy)
 
     def open_registrador_menu(self):
         self.animate_message("Bienvenido, Registrador")
