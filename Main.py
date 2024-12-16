@@ -4,6 +4,7 @@ from Interfaz.GestionarMesa import GestionarMesa
 from Interfaz.CalcularPrecioComanda import CalcularPrecioComanda
 from Interfaz.CrearInformeDiaro import CrearInformeDiario
 import tkinter as tk
+from tkinter import messagebox
 from Registrador import Registrador
 from Chef import Chef
 from Mesa import Mesa
@@ -31,26 +32,29 @@ __status__ = "Beta"
 app = tk.Tk()
 
 app.geometry("500x400")
-platoCon = PlatoControlador()
-comandaCon = ComandaControlador()
-chefCon = ChefControlador()
-mesaCon = MesaControlador()
-registradorCon = RegistradorControlador()
-meseroCon = MeseroControlador()
-listaPlatos = platoCon.obtener_platos()
-listaComandas = comandaCon.obtener_comandas()
-listaChefs = chefCon.obtener_chefs()
-listaMesas = mesaCon.obtener_mesas()
-listaMeseros = meseroCon.obtener_meseros()
-listaRegistradores = registradorCon.obtener_registradores()
-listaInformes = []
-reg = Registrador("", "", "", "", "", listaMesas, [], listaChefs)
-chef  = Chef("", "", "", "", "")
+try:
+    platoCon = PlatoControlador()
+    comandaCon = ComandaControlador()
+    chefCon = ChefControlador()
+    mesaCon = MesaControlador()
+    registradorCon = RegistradorControlador()
+    meseroCon = MeseroControlador()
+    listaPlatos = platoCon.obtener_platos()
+    listaComandas = comandaCon.obtener_comandas()
+    listaChefs = chefCon.obtener_chefs()
+    listaMesas = mesaCon.obtener_mesas()
+    listaMeseros = meseroCon.obtener_meseros()
+    listaRegistradores = registradorCon.obtener_registradores()
+    listaInformes = []
+    reg = Registrador("", "", "", "", "", listaMesas, [], listaChefs)
+    chef  = Chef("", "", "", "", "")
 
-# GestionarChef(app, reg, "eliminar")
-# GestionarMesero(app, reg, "crear")
-# GestionarMesa(app, reg, "eliminar")
-# MenuChef(chef, listaComandas)
-Loggin(app, listaComandas, listaInformes, listaPlatos, listaMeseros, listaRegistradores, listaChefs)
+    # GestionarChef(app, reg, "eliminar")
+    # GestionarMesero(app, reg, "crear")
+    # GestionarMesa(app, reg, "eliminar")
+    # MenuChef(chef, listaComandas)
+    Loggin(app, listaComandas, listaInformes, listaPlatos, listaMeseros, listaRegistradores, listaChefs)
 
-app.mainloop()
+    app.mainloop()
+except Exception as e:
+    messagebox.showerror("Error", e)

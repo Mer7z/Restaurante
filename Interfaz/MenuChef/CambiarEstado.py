@@ -77,15 +77,15 @@ class CambiarEstado():
         estado_entry.grid(row=5, column=1, pady=5)
 
         # Botones para buscar, cambiar estado y salir
-        self.iconoBuscar= tk.PhotoImage(file=r"icons\zoom.png")
+        self.iconoBuscar= tk.PhotoImage(master=self.ventana, file=r"icons\zoom.png")
         buscar_button = ttk.Button(frame, text="Buscar", image=self.iconoBuscar, compound= "right", command=self.buscar)
         buscar_button.grid(row=6, column=0, pady=10)
         
-        self.iconoCambiar= tk.PhotoImage(file=r"icons\control_repeat.png")
+        self.iconoCambiar= tk.PhotoImage(master=self.ventana, file=r"icons\control_repeat.png")
         cambiar_button = ttk.Button(frame, text="Cambiar Estado",image=self.iconoCambiar,compound="right",command=self.guardar)
         cambiar_button.grid(row=6, column=1, pady=10)
         
-        self.iconoSalir = tk.PhotoImage(file=r"icons\cancel.png")
+        self.iconoSalir = tk.PhotoImage(master=self.ventana, file=r"icons\cancel.png")
         salir_button = ttk.Button(frame, text="Salir", image=self.iconoSalir, compound= "right", command=self.subventana.destroy)
         salir_button.grid(row=6, column=2, pady=10)
 

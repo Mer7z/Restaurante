@@ -73,21 +73,24 @@ class Loggin:
         else:
             lista = []
             if rol == "registrador":
-                lista = self.listaRegistradores
+                if self.listaRegistradores:
+                    lista = self.listaRegistradores
             elif rol == "mesero":
-                lista = self.listaMeseros
+                if self.listaMeseros:
+                    lista = self.listaMeseros
             elif rol == "chef":
-                lista = self.listaChefs
+                if self.listaChefs:
+                    lista = self.listaChefs
             
             for u in lista:
                 if u.nombre == user:
                     if u.cedula == password:
                         if rol == "registrador":
-                            self.open_registrador_menu()
+                            self.open_registrador_menu(u)
                         elif rol == "mesero":
-                            self.open_mesero_menu()
+                            self.open_mesero_menu(u)
                         elif rol == "chef":
-                            self.open_chef_menu()
+                            self.open_chef_menu(u)
                         return
                     else:
                         self.lbError.config(text="El nombre de usuario o contraseña no son correctos.")
@@ -114,19 +117,16 @@ class Loggin:
         else:
             self.loggin.after(3000, self.message_window.destroy)
 
-    def open_registrador_menu(self):
+    def open_registrador_menu(self, usuario):
         self.animate_message("Bienvenido, Registrador")
-        miRegistrador = Registrador("11151", "juan", "agudelo", "31146446","juan@gmail.com")
 
 
-        app = Menu(miRegistrador, self.listaInformes, self.listaComandas)
+        app = Menu(self.loggin, usuario, self.listaInformes, self.listaComandas)
 
-    def open_chef_menu(self):
+    def open_chef_menu(self, usuario):
         self.animate_message("Bienvenido, Chef")
-        michef = Chef("12345", "Esneider", "Marin", "1234345", "esneider@gmail.com")
-        MenuChef(michef, self.listaComandas, self.listaPlatos)
+        MenuChef(self.loggin,usuario, self.listaComandas, self.listaPlatos)
 
-    def open_mesero_menu(self):
+    def open_mesero_menu(self, usuario):
         self.animate_message("Bienvenido, Mesero")
-        mimesero = Mesero("2355667", "Manuel", "Ramirez", "435677", "manuel@gmail.com")
-        MenuMesero(mimesero, self.listaComandas)
+        MenuMesero(self.loggin, usuario, self.listaComandas)

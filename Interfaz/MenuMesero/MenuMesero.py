@@ -16,9 +16,10 @@ __status__ = "Beta"
 
 
 class MenuMesero:
-    def __init__(self, mesero, listaComandas):
+    def __init__(self, ventana, mesero, listaComandas):
+        self.root = ventana
         self.listaComandas = listaComandas
-        self.ventana = tk.Tk()
+        self.ventana = tk.Toplevel(self.root)
         self.ventana.geometry("535x400")
         self.ventana.title("Menu Principal")
         self.ventana.resizable(0,0)

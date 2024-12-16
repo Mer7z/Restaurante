@@ -55,11 +55,11 @@ class GestionarCliente():
         email_entry.grid(row=4, column=1, pady=5)
 
 
-        self.iconoGuardar = tk.PhotoImage(file=r"icons\add.png")
+        self.iconoGuardar = tk.PhotoImage(master=self.ventana, file=r"icons\add.png")
         guardar_button = ttk.Button(frame, text="Guardar", image=self.iconoGuardar, compound="right", command=self.guardar)
         guardar_button.grid(row=5, column=0, pady=10)
 
-        self.iconoSalir = tk.PhotoImage(file=r"icons\cancel.png")
+        self.iconoSalir = tk.PhotoImage(master=self.ventana, file=r"icons\cancel.png")
         salir_button = ttk.Button(frame, text="Salir",image=self.iconoSalir, compound="right", command=self.subventana.destroy)
         salir_button.grid(row=5, column=1, pady=10)
 

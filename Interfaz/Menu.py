@@ -61,8 +61,9 @@ class Menu():
 
 
 
-    def __init__(self, Registrador, listaInformes, listaComandas):
-        self.ventana = tk.Tk()
+    def __init__(self, ventana, Registrador, listaInformes, listaComandas):
+        self.root = ventana
+        self.ventana = tk.Toplevel(self.root)
         self.ventana.geometry("535x400")
         self.ventana.title("Menu Principal")
         self.ventana.resizable(0,0)

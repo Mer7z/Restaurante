@@ -30,8 +30,9 @@ class MenuChef():
     def cambiarEstado(self):
         cambiar = CambiarEstado(self.ventana, self.Chef, self.comandas) 
 
-    def __init__(self, Chef, comandas, platos):
-        self.ventana = tk.Tk()
+    def __init__(self, ventana, Chef, comandas, platos):
+        self.root = ventana
+        self.ventana = tk.Toplevel(self.root)
         self.ventana.geometry("535x400")
         self.ventana.title("Menú Principal")
         self.ventana.resizable(0, 0)
