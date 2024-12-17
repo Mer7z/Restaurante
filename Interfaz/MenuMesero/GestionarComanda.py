@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+from Interfaz.Tooltips import add_tooltip 
 __author__ = "John Esneider Marin Bolivar, Manuel Esteban ramirez, Juan Esteban Agudelo Carmona"
 __copyright__ = "Copyright 2024, JMJ"
 __credits__ = ["JMJ", "John Esneider Marin Bolivar, Manuel Esteban ramirez, Juan Esteban Agudelo Carmona", "Univalle"]
@@ -60,14 +61,17 @@ class GestionarComanda():
         self.iconoBuscar= tk.PhotoImage(master=self.ventana, file=r"icons\zoom.png")
         buscar_button = ttk.Button(frame, text="Buscar",image=self.iconoBuscar, compound= "right", command=self.buscar)
         buscar_button.grid(row=6, column=0, pady=10)
+        add_tooltip(buscar_button, "haz clic aquí para buscar")
 
         self.iconoCambiar= tk.PhotoImage(master=self.ventana, file=r"icons\control_repeat.png")
         guardar_button = ttk.Button(frame, text="Guardar",image=self.iconoCambiar,compound="right", command=self.guardar)
         guardar_button.grid(row=6, column=1, pady=10)
+        add_tooltip(guardar_button, "haz clic aquí para guardar")
 
         self.iconoSalir = tk.PhotoImage(master=self.ventana, file=r"icons\cancel.png")
         salir_button = ttk.Button(frame, text="Salir", image=self.iconoSalir, compound= "right", command=self.subventana.destroy)
         salir_button.grid(row=6, column=2, pady=10)
+        add_tooltip(salir_button, "haz clic aquí para salir")
 
     def guardar(self):
         

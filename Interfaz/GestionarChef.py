@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from Chef import Chef
+from Interfaz.Tooltips import add_tooltip 
+
 __author__ = "John Esneider Marin Bolivar, Manuel Esteban ramirez, Juan Esteban Agudelo Carmona"
 __copyright__ = "Copyright 2024, JMJ"
 __credits__ = ["JMJ", "John Esneider Marin Bolivar, Manuel Esteban ramirez, Juan Esteban Agudelo Carmona", "Univalle"]
@@ -75,13 +77,15 @@ class GestionarChef():
         email_entry = ttk.Entry(frame, width=25, state="normal" if accion == "crear" else "disabled", textvariable=self.email)
         email_entry.grid(row=4, column=1, pady=5)
 
-        
-
         guardar_button = ttk.Button(frame, text="Guardar", command=self.guardar)
         guardar_button.grid(row=5, column=0, pady=10)
 
         salir_button = ttk.Button(frame, text="Salir", command=self.subventana.destroy)
         salir_button.grid(row=5, column=1, pady=10)
+
+        add_tooltip(guardar_button, "Haz clic aquí para guardar")
+        add_tooltip(buscar_button, "Haz clic aquí para buscar")
+        add_tooltip(salir_button, "Haz clic aquí para salir")
 
         if accion == "eliminar":
             buscar_button = ttk.Button(frame, text="Buscar", command=self.buscar)

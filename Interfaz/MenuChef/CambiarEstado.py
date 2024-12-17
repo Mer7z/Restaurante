@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+from Interfaz.Tooltips import add_tooltip 
 
 
 class CambiarEstado():
@@ -80,14 +81,17 @@ class CambiarEstado():
         self.iconoBuscar= tk.PhotoImage(master=self.ventana, file=r"icons\zoom.png")
         buscar_button = ttk.Button(frame, text="Buscar", image=self.iconoBuscar, compound= "right", command=self.buscar)
         buscar_button.grid(row=6, column=0, pady=10)
+        add_tooltip(buscar_button, "Haz clic aquí para buscar la comanda")
         
         self.iconoCambiar= tk.PhotoImage(master=self.ventana, file=r"icons\control_repeat.png")
         cambiar_button = ttk.Button(frame, text="Cambiar Estado",image=self.iconoCambiar,compound="right",command=self.guardar)
         cambiar_button.grid(row=6, column=1, pady=10)
+        add_tooltip(cambiar_button, "Haz clic aquí para cambiar el estado de la comanda")
         
         self.iconoSalir = tk.PhotoImage(master=self.ventana, file=r"icons\cancel.png")
         salir_button = ttk.Button(frame, text="Salir", image=self.iconoSalir, compound= "right", command=self.subventana.destroy)
         salir_button.grid(row=6, column=2, pady=10)
+        add_tooltip(salir_button, "Haz clic aquí para salir de la ventana")
 
     def guardar(self):
         """

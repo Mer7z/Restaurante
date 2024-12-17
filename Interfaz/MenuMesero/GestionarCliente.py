@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from Cliente import Cliente
+from Interfaz.Tooltips import add_tooltip 
 __author__ = "John Esneider Marin Bolivar, Manuel Esteban ramirez, Juan Esteban Agudelo Carmona"
 __copyright__ = "Copyright 2024, JMJ"
 __credits__ = ["JMJ", "John Esneider Marin Bolivar, Manuel Esteban ramirez, Juan Esteban Agudelo Carmona", "Univalle"]
@@ -58,14 +59,17 @@ class GestionarCliente():
         self.iconoGuardar = tk.PhotoImage(master=self.ventana, file=r"icons\add.png")
         guardar_button = ttk.Button(frame, text="Guardar", image=self.iconoGuardar, compound="right", command=self.guardar)
         guardar_button.grid(row=5, column=0, pady=10)
+        add_tooltip(guardar_button, "Haz clic aquí para guardar")
 
         self.iconoSalir = tk.PhotoImage(master=self.ventana, file=r"icons\cancel.png")
         salir_button = ttk.Button(frame, text="Salir",image=self.iconoSalir, compound="right", command=self.subventana.destroy)
         salir_button.grid(row=5, column=1, pady=10)
+        add_tooltip(salir_button, "Haz clic aquí para salir")
 
         if accion == "eliminar":
             buscar_button = ttk.Button(frame, text="Buscar", command=self.buscar)
             buscar_button.grid(row=5, column=0, pady=5)
+            add_tooltip(buscar_button, "Haz clic aquí para buscar")
             guardar_button.grid_configure(pady=5, column=1)
             salir_button.grid_configure(pady=5, column=2)
     

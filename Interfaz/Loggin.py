@@ -65,11 +65,11 @@ class Loggin:
         rol = self.cbRol.get()
 
         if user == "Juanes" and password == "123456":
-            self.open_registrador_menu()
+            self.open_registrador_menu(Registrador)
         elif user == "Esneider" and password == "987654":
-            self.open_chef_menu()
+            self.open_chef_menu(Chef)
         elif user == "Manuel" and password == "456789":
-            self.open_mesero_menu()
+            self.open_mesero_menu(Mesero)
         else:
             lista = []
             if rol == "registrador":

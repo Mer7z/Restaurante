@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from datetime import date
+from Interfaz.Tooltips import add_tooltip 
 
 __author__ = "John Esneider Marin Bolivar, Manuel Esteban ramirez, Juan Esteban Agudelo Carmona"
 __copyright__ = "Copyright 2024, JMJ"
@@ -72,9 +73,11 @@ class CrearInformeDiario():
 
         salir_button = ttk.Button(frame, text="Salir", command=self.subventana.destroy)
         salir_button.grid(row=6, column=1, pady=10)
-
+        
+        add_tooltip(salir_button, "Haz clic aquí para salir")
+        
     def guardar(self):
-       pass
+        pass
 
     def buscar(self):
         try:
